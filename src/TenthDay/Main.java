@@ -22,17 +22,22 @@ public class Main {
                 list.add(Integer.parseInt(line));
             }
 
+            // Include charging outlet and device's built-in adapter
+            list.add(0);
             Collections.sort(list);
-            int jolt_1 = 1;
-            int jolt_3 = 1;
+            list.add(list.get(list.size() - 1) + 3);
+
+            int jolt_1 = 0;
+            int jolt_3 = 0;
             for (int i = 0; i < list.size() - 1; i++) {
-                if(list.get(i+1) - list.get(i) == 1) {
+                int diff = list.get(i + 1) - list.get(i);
+                if (diff == 1) {
                     jolt_1++;
-                } else {
+                } else if (diff == 3) {
                     jolt_3++;
                 }
             }
-            System.out.println(jolt_1  * jolt_3);
+            System.out.println(jolt_1 * jolt_3);
         } catch (Exception e) {
             System.out.println("Debug: " + debug);
             e.printStackTrace();
